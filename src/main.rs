@@ -23,5 +23,5 @@ fn main() {
     let rdr = Reader {};
 
     //println!("{:?}", rdr.parse_points(in_file));
-    rdr.parse_points(in_file);
+    println!("{:?}", rdr.parse_points(in_file));
 }
