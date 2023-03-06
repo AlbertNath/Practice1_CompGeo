@@ -1,6 +1,7 @@
-// Module declaration
+// Module tree declaration
 mod i_o;
 mod geo_structs;
+mod algorithmia;
 
 // Imports
 use std::env;

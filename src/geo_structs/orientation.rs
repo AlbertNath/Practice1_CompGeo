@@ -1,5 +1,6 @@
 pub enum Direction {
     Collinear,
     Clockwise,
-    CounterClockwise
+    CounterClockwise,
+    Invalid
 }
