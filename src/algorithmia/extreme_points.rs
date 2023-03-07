@@ -20,33 +20,33 @@ fn _is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> bo
     let or2: Direction = orientation(q, r, curr);
     let or3: Direction = orientation(r, p, curr);
 
-    let (mut or1_c, mut or2_c, mut or3_c) = (false, false, false);
-    let (mut or1_cc, mut or2_cc, mut or3_cc) = (false, false, false);
+    let mut clockw: Vec<bool> = vec![false ; 3];
+    let mut countclock: Vec<bool> = vec![false ; 3];
 
     match or1 {
         Direction::Collinear => {}
-        Direction::Clockwise => {or1_c = true}
-        Direction::CounterClockwise => {or1_cc = true}
+        Direction::Clockwise => {clockw[0] = true}
+        Direction::CounterClockwise => {countclock[0] = true}
         Direction::Invalid => {}
     }
 
     match or2 {
         Direction::Collinear => {}
-        Direction::Clockwise => {or2_c = true}
-        Direction::CounterClockwise => {or2_cc = true}
+        Direction::Clockwise => {clockw[1] = true}
+        Direction::CounterClockwise => {countclock[1] = true}
         Direction::Invalid => {}
     }
 
     match or3 {
         Direction::Collinear => {}
-        Direction::Clockwise => {or3_c = true}
-        Direction::CounterClockwise => {or3_cc = true}
+        Direction::Clockwise => {clockw[2] = true}
+        Direction::CounterClockwise => {countclock[2] = true}
         Direction::Invalid => {}
     }
 
-    if or1_c && or2_c && or3_c { return true };
+    if clockw.iter().all(|&x| x) {return true};
+    if countclock.iter().all(|&x| x) {return true};
 
-    if or1_cc && or2_cc && or3_cc { return true };
     false
 }
 
