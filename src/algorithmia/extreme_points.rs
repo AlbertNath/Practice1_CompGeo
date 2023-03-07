@@ -80,7 +80,7 @@ pub fn _extreme_points(points: Vec<Point>, n: usize) -> Vec<Point> {
             if is_inside {break;}
         }
         if !is_inside {
-            result.push(points[point_idx].clone());
+            result.push(points[point_idx]);
         }
     }
 
