@@ -8,11 +8,10 @@ fn orientation(p1: &Point, p2: &Point, p3: &Point) -> Direction {
         return Direction::Collinear;
     } else if value > 0  {
         return Direction::CounterClockwise;
-    } else if value < 0 {
+    } else {
         return Direction::Clockwise;
     }
-
-    Direction::Invalid
+    //Direction::Invalid
 }
 
 fn _is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> bool {
@@ -27,25 +26,24 @@ fn _is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> bo
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[0] = true}
         Direction::CounterClockwise => {countclock[0] = true}
-        Direction::Invalid => {}
+        //Direction::Invalid => {}
     }
 
     match or2 {
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[1] = true}
         Direction::CounterClockwise => {countclock[1] = true}
-        Direction::Invalid => {}
+        //Direction::Invalid => {}
     }
 
     match or3 {
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[2] = true}
         Direction::CounterClockwise => {countclock[2] = true}
-        Direction::Invalid => {}
+        //Direction::Invalid => {}
     }
 
-    if clockw.iter().all(|&x| x) {return true};
-    if countclock.iter().all(|&x| x) {return true};
+    if clockw.iter().all(|&x| x) || countclock.iter().all(|&x| x) {return true};
 
     false
 }
