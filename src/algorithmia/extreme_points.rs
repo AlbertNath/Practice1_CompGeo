@@ -1,3 +1,5 @@
+use std::slice::SliceIndex;
+
 use super::super::geo_structs::point::Point;
 use super::super::geo_structs::orientation::Direction;
 
@@ -48,6 +50,39 @@ fn _is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> bo
     false
 }
 
-pub fn _extreme_points(points: Vec<Point>, n: usize) {
-    let mut convex_hull: Vec<Point> = vec![];
+pub fn _extreme_points(points: Vec<Point>, n: usize) -> Vec<Point> {
+    let mut result: Vec<Point> = vec![];
+
+    for point_idx in 0..n {
+        let mut is_inside: bool = false;
+
+        for i in 0..n {
+            if i == point_idx {continue;}
+
+            for j in i + 1..n {
+                if j == point_idx {continue;}
+
+                for k in j + 1..n {
+                    if k == point_idx {continue;}
+
+                    let p: &Point = &points[i];
+                    let q: &Point = &points[j];
+                    let r: &Point = &points[k];
+                    let curr: &Point = &points[point_idx];
+
+                    if _is_point_iside_triangle(p, q, r, curr){
+                        is_inside = true;
+                        break;
+                    }
+                }
+                if is_inside {break;}
+            }
+            if is_inside {break;}
+        }
+        if !is_inside {
+            result.push(points[point_idx].clone());
+        }
+    }
+
+    result
 }
