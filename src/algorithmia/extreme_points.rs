@@ -1,5 +1,3 @@
-use std::slice::SliceIndex;
-
 use super::super::geo_structs::point::Point;
 use super::super::geo_structs::orientation::Direction;
 
