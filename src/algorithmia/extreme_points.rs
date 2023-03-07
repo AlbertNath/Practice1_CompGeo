@@ -16,7 +16,7 @@ fn orientation(p1: &Point, p2: &Point, p3: &Point) -> Direction {
     //Direction::Invalid
 }
 
-fn _is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> bool {
+fn is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> bool {
     let or1: Direction = orientation(p, q, curr);
     let or2: Direction = orientation(q, r, curr);
     let or3: Direction = orientation(r, p, curr);
@@ -70,7 +70,7 @@ pub fn _extreme_points(points: Vec<Point>, n: usize) -> Vec<Point> {
                     let r: &Point = &points[k];
                     let curr: &Point = &points[point_idx];
 
-                    if _is_point_iside_triangle(p, q, r, curr){
+                    if is_point_iside_triangle(p, q, r, curr){
                         is_inside = true;
                         break;
                     }
