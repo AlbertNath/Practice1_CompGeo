@@ -6,7 +6,8 @@ mod algorithmia;
 // Imports
 use std::env;
 use std::process;
-use crate::i_o::reader::Reader;
+use crate::i_o::{reader, writter};
+use crate::geo_structs::point::Point;
 
 fn err(msg: &str) {
    println!("{}", msg);
@@ -21,8 +22,8 @@ fn main() {
     }
 
     let in_file = &args[1];
-    let rdr = Reader {};
 
-    //println!("{:?}", rdr.parse_points(in_file));
-    println!("{:?}", rdr.parse_points(in_file));
+    let input: Vec<Point> = reader::parse_points(&in_file);
+    let result: Vec<Point> = algorithmia::extreme_points::_extreme_points(&input,input.len());
+    writter::write_result(&result)
 }

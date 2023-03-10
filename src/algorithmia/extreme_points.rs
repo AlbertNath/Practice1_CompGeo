@@ -11,7 +11,6 @@ fn orientation(p1: &Point, p2: &Point, p3: &Point) -> Direction {
     } else {
         return Direction::Clockwise;
     }
-    //Direction::Invalid
 }
 
 fn is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> bool {
@@ -26,21 +25,18 @@ fn is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> boo
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[0] = true}
         Direction::CounterClockwise => {countclock[0] = true}
-        //Direction::Invalid => {}
     }
 
     match or2 {
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[1] = true}
         Direction::CounterClockwise => {countclock[1] = true}
-        //Direction::Invalid => {}
     }
 
     match or3 {
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[2] = true}
         Direction::CounterClockwise => {countclock[2] = true}
-        //Direction::Invalid => {}
     }
 
     if clockw.iter().all(|&x| x) || countclock.iter().all(|&x| x) {return true};
@@ -48,7 +44,7 @@ fn is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> boo
     false
 }
 
-pub fn _extreme_points(points: Vec<Point>, n: usize) -> Vec<Point> {
+pub fn _extreme_points(points: &Vec<Point>, n: usize) -> Vec<Point> {
     let mut result: Vec<Point> = vec![];
 
     for point_idx in 0..n {
