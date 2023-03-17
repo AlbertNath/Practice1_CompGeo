@@ -9,6 +9,10 @@ point in the set, if it's contained in  at least a tringle formed by other three
 points in the set, in which case it  ignores it and continues to the next point;
 otherwise it adds the point to the resulting vector.
 
+:warning: Current implementation works with **normalized points**, i.e., their 
+coordinates must be integers; otherwise we run the risk of floating point errors
+and get a bad Convex Hull.
+
 ## Usage:
 
 ### Prerequisite:
@@ -30,8 +34,8 @@ cargo build
 ```
 
 
-Create a file containing normalized points with the Vizualization Helper program. Then, run the program and
-provide the path to the previous file with the encoded set of points from which you want to calculate the Convex
+Create a file containing normalized points with the Vizualization Helper program. Then, run the program 
+providing the path to the previous file with the encoded set of points from which you want to calculate the Convex
 Hull:
 
 ``` sh
