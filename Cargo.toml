@@ -1,5 +1,5 @@
 [package]
-name = "practice1_comgeo"
+name = "practice1_compgeo"
 version = "0.1.0"
 authors = ["Alberto Natanael Medel Piña <natanael_pi@ciencias.unam.mx>"]
 edition = "2021"
