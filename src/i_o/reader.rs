@@ -1,6 +1,17 @@
 use std::{fs, process};
 
 use super::super::geo_structs::point::Point;
+use super::super::algorithmia::algorithms::Algorithm;
+
+/// Auxiliary function to show an error message
+/// and exit properly.
+///
+/// ### Params:
+/// - `str`: the error message to show.
+pub fn err(msg: &str) {
+   println!("{}", msg);
+   process::exit(1);
+}
 
 /// Auxiliary function to read a file and handle
 /// errors.
@@ -19,6 +30,24 @@ fn read_file(path: &str) -> String {
             process::exit(1)
         }
     }
+}
+
+fn get_flag(args: &Vec<String>) -> Option<&str> {
+    for a in args.iter(){
+        if a.starts_with("-") {
+            return Some(a)
+        }
+    }
+    None
+}
+
+fn get_file(args: &Vec<String>) -> Option<&str> {
+    for i in 1..args.len() {
+        if !args[i].starts_with("-") {
+            return  Some(&args[i]);
+        }
+    }
+    None
 }
 
 /// Function to handle a raw point from the input file.
@@ -50,8 +79,16 @@ fn handle_raw_point(p: &str) -> i32 {
 ///
 /// ## Returns:
 /// A `Point` vector containing all the parsed points.
-pub fn parse_points(path: &str) -> Vec<Point> {
-    let raw = read_file(path);
+pub fn parse_points(args: &Vec<String>) -> Vec<Point> {
+    let mut file: &str = "";
+
+    if let Some(f) = get_file(args) {
+        file = f;
+    } else {
+        err("File not provided.")
+    }
+
+    let raw = read_file(file);
     let mut points: Vec<Point> = Vec::new();
 
     for p in raw.split(',') {
@@ -66,4 +103,20 @@ pub fn parse_points(path: &str) -> Vec<Point> {
     }
 
     points
+}
+
+pub fn get_algorithm(args: &Vec<String>) -> Option<Algorithm> {
+    let mut f: &str = "";
+
+    if let Some(i) = get_flag(args) {
+        f = i;
+    } else {
+        err("Invalid or missing flag.");
+    }
+
+    match f {
+        "-p" => Some(Algorithm::ExtremePoints),
+        "-s" => Some(Algorithm::ExtremeSegments),
+        _ => None
+    }
 }

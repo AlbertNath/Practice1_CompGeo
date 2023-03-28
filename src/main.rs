@@ -5,19 +5,10 @@ mod algorithmia;
 
 // Imports
 use std::env;
-use std::process;
+use algorithmia::{algorithms::Algorithm, extreme_points, extreme_segments};
+
 use crate::i_o::{reader, writter};
 use crate::geo_structs::point::Point;
-
-/// Auxiliary function to show an error message
-/// and exit properly.
-///
-/// ### Params:
-/// - `str`: the error message to show.
-fn err(msg: &str) {
-   println!("{}", msg);
-   process::exit(1);
-}
 
 /// # Geometría computacional, semestre 2023-2
 /// ## Practice 1: Extreme Points.
@@ -29,12 +20,30 @@ fn main() {
 
     let args: Vec<String> = env::args().collect();
     if args.len() - 1 == 0{
-        err("Too few arguments.");
+        reader::err("Too few arguments.");
     }
 
-    let in_file = &args[1];
+    let points: Vec<Point> = reader::parse_points(&args);
+    let mut algorithm: Algorithm = Algorithm::ExtremePoints;
 
-    let input: Vec<Point> = reader::parse_points(&in_file);
-    let result: Vec<Point> = algorithmia::extreme_points::extreme_points(&input,input.len());
+    if let Some(a) = reader::get_algorithm(&args) {
+        algorithm = a;
+    } else {
+        reader::err("Invalid algorithm flag detected.");
+    }
+
+    let mut result: Vec<Point> = vec![];
+    match algorithm {
+        Algorithm::ExtremePoints => {
+            println!("Extreme!");
+            result = extreme_points::extreme_points(&points, points.len());
+        }
+
+        Algorithm::ExtremeSegments => {
+            println!("Segments");
+            result = extreme_segments::extreme_segments(&points, points.len());
+        }
+    }
+
     writter::write_result(&result)
 }

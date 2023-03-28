@@ -1,26 +1,5 @@
 use super::super::geo_structs::point::Point;
-use super::super::geo_structs::orientation::Direction;
-
-/// Function to get the orientation of a point given other two points.
-///
-/// ## Params:
-/// - `p1`: first point of the line.
-/// - `p2`: the second point of the line.
-/// - `p3`: the point we want to know it's direction.
-///
-/// ## Returns:
-/// - `Direction`: an enum of type `Direction`.
-fn orientation(p1: &Point, p2: &Point, p3: &Point) -> Direction {
-    let value: i32 = (p3.y - p1.y) * (p2.x - p1.x) - (p2.y - p1.y) * (p3.x - p1.x);
-
-    if value == 0 {
-        return Direction::Collinear;
-    } else if value > 0  {
-        return Direction::CounterClockwise;
-    } else {
-        return Direction::Clockwise;
-    }
-}
+use super::super::geo_structs::orientation::{Direction, orientation};
 
 /// Function to detect  if a given point  is inside a triangle  defined by three
 /// points.
@@ -48,19 +27,22 @@ fn is_point_iside_triangle(p: &Point, q: &Point, r: &Point, curr: &Point) -> boo
     match or1 {
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[0] = true}
-        Direction::CounterClockwise => {countclock[0] = true}
+        Direction::CounterClockwise => {countclock[0] = true},
+        Direction::None => {}
     }
 
     match or2 {
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[1] = true}
-        Direction::CounterClockwise => {countclock[1] = true}
+        Direction::CounterClockwise => {countclock[1] = true},
+        Direction::None => {}
     }
 
     match or3 {
         Direction::Collinear => {}
         Direction::Clockwise => {clockw[2] = true}
-        Direction::CounterClockwise => {countclock[2] = true}
+        Direction::CounterClockwise => {countclock[2] = true},
+        Direction::None => {}
     }
 
     if clockw.iter().all(|&x| x) || countclock.iter().all(|&x| x) {return true};
