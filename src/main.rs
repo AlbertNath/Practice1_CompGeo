@@ -11,11 +11,10 @@ use crate::i_o::{reader, writter};
 use crate::geo_structs::point::Point;
 
 /// # Geometría computacional, semestre 2023-2
-/// ## Practice 1: Extreme Points.
+/// ## Practice 2: Extreme Points.
 /// ### Author: [Medel Piña Alberto Natanael](https://github.com/AlbertNath)
 ///
-/// Implementation of [Extreme Points](https://en.wikipedia.org/wiki/Extreme_point)
-/// algorithm.
+/// Implementation of Extreme Segments algorithm.
 fn main() {
 
     let args: Vec<String> = env::args().collect();
@@ -32,18 +31,18 @@ fn main() {
         reader::err("Invalid algorithm flag detected.");
     }
 
-    let mut result: Vec<Point> = vec![];
+    let mut _result: Vec<Point> = vec![];
     match algorithm {
         Algorithm::ExtremePoints => {
             println!("Extreme!");
-            result = extreme_points::extreme_points(&points, points.len());
+            _result = extreme_points::extreme_points(&points, points.len());
         }
 
         Algorithm::ExtremeSegments => {
             println!("Segments");
-            result = extreme_segments::extreme_segments(&points, points.len());
+            _result = extreme_segments::extreme_segments(&points, points.len());
         }
     }
 
-    writter::write_result(&result)
+    writter::write_result(&_result)
 }

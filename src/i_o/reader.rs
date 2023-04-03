@@ -32,6 +32,16 @@ fn read_file(path: &str) -> String {
     }
 }
 
+/// Auxiliary (dummy) function to get the flag from
+/// the given argument vector.
+///
+/// ## Params:
+/// - `args`: the argument vector.
+///
+/// ## Returns:
+/// An `Option<&str>`, which contains a `Some` with
+/// the given flag or `None` in a bad case (no flag
+/// was detected).
 fn get_flag(args: &Vec<String>) -> Option<&str> {
     for a in args.iter(){
         if a.starts_with("-") {
@@ -41,6 +51,16 @@ fn get_flag(args: &Vec<String>) -> Option<&str> {
     None
 }
 
+/// Auxiliary (dummy) function to get the input file
+/// from the argument vector.
+///
+/// ## Params:
+/// - `args`: the argument vector.
+///
+/// ## Returns:
+/// An `Option<&str>`, which contains a `Some` with
+/// the given input file or `None` in a bad case (no
+/// input file was detected).
 fn get_file(args: &Vec<String>) -> Option<&str> {
     for i in 1..args.len() {
         if !args[i].starts_with("-") {
@@ -105,6 +125,15 @@ pub fn parse_points(args: &Vec<String>) -> Vec<Point> {
     points
 }
 
+/// Function to determine the algorithm from a fiven flag.
+///
+/// ## Params:
+/// - `args`: the argument vector.
+///
+/// ## Returns:
+/// An `Option<Algorithm>` wich contains a `Some` with the
+/// algorithm enum that will be executed or `None` if no
+/// matching flag was found.
 pub fn get_algorithm(args: &Vec<String>) -> Option<Algorithm> {
     let mut f: &str = "";
 
