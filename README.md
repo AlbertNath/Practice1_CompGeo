@@ -1,4 +1,4 @@
-# Practice 1: Computational Geometry - Semester 2023-2
+# Practices: Computational Geometry - Semester 2023-2
 
 ## Descrption:
 Implementation of the following algorithms:
