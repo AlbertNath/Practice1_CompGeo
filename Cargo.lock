@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "practice1_compgeo"
+name = "practices_compgeo"
 version = "0.1.0"

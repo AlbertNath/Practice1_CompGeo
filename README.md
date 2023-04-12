@@ -1,17 +1,16 @@
-# Practice 1: Computational Geometry - Semester 2023-2
+# Practices: Computational Geometry - Semester 2023-2
 
 ## Descrption:
-Implementation of [Extreme Points](https://en.wikipedia.org/wiki/Extreme_point) 
-algorithm.
+Implementation of the following algorithms:
+ - [Extreme Points](https://en.wikipedia.org/wiki/Extreme_point).
+ - [Exrteme Segments (Edges)](https://www.cambridge.org/core/books/computational-geometry-in-c/22A04E03A4BB10C382A1257F64477E1B).
 
-It calculates the  Convex Hull of a  given set of points by  checking, for every
-point in the set, if it's contained in  at least a tringle formed by other three
-points in the set, in which case it  ignores it and continues to the next point;
-otherwise it adds the point to the resulting vector.
+These algorithms calculate the  [Convex Hull]() of a  given set of points using different 
+approaches.
 
 :warning: Current implementation works with **normalized points**, i.e., their 
 coordinates must be integers; otherwise we run the risk of floating point errors
-and get a bad Convex Hull.
+and getting a bad Convex Hull.
 
 ## Usage:
 
@@ -35,12 +34,16 @@ cargo build
 
 
 Create a file containing normalized points with the Vizualization Helper program. Then, run the program 
-providing the path to the previous file with the encoded set of points from which you want to calculate the Convex
-Hull:
+providing the path to the previous file with the encoded set of points from which you want to calculate the
+Convex Hull and a flag setting the desired algorithm to use:
 
 ``` sh
-cargo run [PATH_TO_FILE]
+cargo run -- [FLAG] [PATH_TO_FILE]
 ```
+
+Available flags associated to an algorithm are:
+- `-p`: Extreme Points.
+- `-s`: Extreme Segments. 
 
 The result will be in a file named `results.txt`, which later can be loaded to the Vizualization Helper 
 to draw the resulting Convex Hull.
