@@ -21,7 +21,7 @@ You must need `cargo`, Rust's build system and package manager. See [installatio
 Go to the root directory:
 
 ``` sh
-cd Practice1_CompGeo/
+cd Practices_CompGeo/
 ```
 
 
