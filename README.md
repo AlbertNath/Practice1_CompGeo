@@ -60,7 +60,7 @@ Then, a browser window will pop up with the required documentation.
 Alternatively, you can find an `index.html` file at the directory:
 
 ``` sh
-target/doc/practice1_compgeo/
+target/doc/practices_compgeo/
 ```
 
 where you can access the source of the documentation.
