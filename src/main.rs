@@ -5,7 +5,7 @@ mod algorithmia;
 
 // Imports
 use std::env;
-use algorithmia::{algorithms::Algorithm, extreme_points, extreme_segments};
+use algorithmia::{algorithms::Algorithm, extreme_points, extreme_segments, gift_wrapping};
 
 use crate::i_o::{reader, writter};
 use crate::geo_structs::point::Point;
@@ -41,6 +41,11 @@ fn main() {
         Algorithm::ExtremeSegments => {
             println!("Segments");
             _result = extreme_segments::extreme_segments(&points, points.len());
+        }
+
+        Algorithm::GiftWrapping => {
+            println!("Wrapping up!");
+            _result = gift_wrapping::jarvis_march(&points, points.len());
         }
     }
 

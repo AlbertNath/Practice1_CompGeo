@@ -7,3 +7,13 @@ pub struct Point {
     pub x: i32,
     pub y: i32,
 }
+
+pub fn compare_points (p: &Point, q: &Point) -> bool {
+    if p.y < q.y {
+        return true;
+    }
+    if p.y == q.y && p.x < q.x {
+        return true;
+    }
+    false
+}

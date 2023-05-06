@@ -146,6 +146,7 @@ pub fn get_algorithm(args: &Vec<String>) -> Option<Algorithm> {
     match f {
         "-p" => Some(Algorithm::ExtremePoints),
         "-s" => Some(Algorithm::ExtremeSegments),
+        "-w" => Some(Algorithm::GiftWrapping),
         _ => None
     }
 }
