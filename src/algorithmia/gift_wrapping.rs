@@ -1,6 +1,25 @@
 use super::super::geo_structs::point::{Point, compare_points};
 use super::super::geo_structs::orientation::{Direction, orientation};
 
+/// Jarvis-March Algorithm to compute the Convex Hull of a given
+/// set of points. Also known as "Gift Wrapping".
+///
+/// The algorithm works as follows: we first find an extreme point
+/// (either respect to y-coordinate or x-coordinate), then
+/// we find the closest point to the former in order to create a
+/// proper Convex Hull. We iterate this process until we find
+/// again the starting point.
+///
+/// Time complexity of this algortihm is O(n^2), since we need to
+/// compare every point with n-1 points in the worst case scenario.
+///
+/// ## Params:
+/// - `points`: the set of points which we want to calculate its Convex Hull.
+/// - `n`: the size of the set of points.
+///
+/// ## Returns:
+/// - A `Point` vector which contains the points of the set that conform
+/// the Convex Hull.
 pub fn jarvis_march(points: &Vec<Point>, n: usize) -> Vec<Point> {
     let mut convex_hull: Vec<Point> = vec![];
 
