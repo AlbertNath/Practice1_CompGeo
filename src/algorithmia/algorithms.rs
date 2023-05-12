@@ -3,4 +3,5 @@
 pub enum Algorithm {
     ExtremePoints,
     ExtremeSegments,
+    GiftWrapping,
 }
