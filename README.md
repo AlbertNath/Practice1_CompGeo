@@ -44,6 +44,7 @@ cargo run -- [FLAG] [PATH_TO_FILE]
 Available flags associated to an algorithm are:
 - `-p`: Extreme Points.
 - `-s`: Extreme Segments. 
+- `-w`: Jarvis-March (Gift Wrapping). 
 
 The result will be in a file named `results.txt`, which later can be loaded to the Vizualization Helper 
 to draw the resulting Convex Hull.
